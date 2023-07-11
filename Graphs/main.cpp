@@ -1,14 +1,10 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include "Graph.h"
+#include "Menus.h"
 
 int main(){
-	int content;
-	std::cout << "--->Node content: ";
-	std::cin >> content;
-	Graph graph;
-	graph.TerminalController();
-	//graph.Test();
+	Graph list;
+	Menus menu(&list);
 	return 0;
 }

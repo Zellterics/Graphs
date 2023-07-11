@@ -4,7 +4,7 @@
 
 class Graph
 {
-private:
+protected:
 	Node* start, * move, * end, * actual;
 public:
 	Graph();
@@ -26,6 +26,4 @@ public:
 	void PrintAllNodes();
 	void PrintEverything();
 	void PrintWithNodeID(int NodeID);
-	void TerminalController();
-	void Test();
 };
