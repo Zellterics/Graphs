@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConectionsList.cpp" />
+    <ClCompile Include="DoubleLinkedList.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="main.cpp" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClInclude Include="Conection.h" />
     <ClInclude Include="ConectionsList.h" />
+    <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Menus.h" />

@@ -1,9 +1,10 @@
 #pragma once
-#include "LinkedList.h"
+#include "DoubleLinkedList.h"
 
 class Menus
 {
 public:
 	Menus(Graph* graph);
 	Menus(LinkedList* linkedList);
+	Menus(DoubleLinkedList* doubleLinkedList);
 };

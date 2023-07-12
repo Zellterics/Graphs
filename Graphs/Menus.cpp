@@ -147,3 +147,57 @@ Menus::Menus(LinkedList* linkedList) {
 	}
 	delete(this);
 }
+
+Menus::Menus(DoubleLinkedList* doubleLinkedList) {
+	int content, NodeID;
+	bool stop = false;
+	std::string input;
+	char filteredInput;
+	input = 'f';
+	while (!stop) {
+		filteredInput = input[0];
+		switch (filteredInput) {
+		case 'f': case 'F':
+			std::cout << "---FUNCTIONS    ---\n";
+			std::cout << "---AddElement   ---\n";
+			std::cout << "---GoTo         ---\n";
+			std::cout << "---Print        ---\n";
+			std::cout << "---Everything   ---\n";
+			std::cout << "---Terminate    ---\n";
+			std::cout << "---DeleteActual ---\n";
+			break;
+		case 'a': case 'A':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			doubleLinkedList->AddElement(content);
+			doubleLinkedList->PrintActual();
+			break;
+		case 'g': case 'G':
+			std::cout << "--->NodeID:";
+			std::cin >> NodeID;
+			if (!doubleLinkedList->GoToNodeID(NodeID)) {
+				std::cout << "--->ERROR: No Such NodeID\n";
+			}
+			doubleLinkedList->PrintActual();
+			break;
+		case 'p': case 'P':
+			doubleLinkedList->PrintActual();
+			break;
+		case 'e': case 'E':
+			doubleLinkedList->PrintEverything();
+			break;
+		case 't': case 'T':
+			stop = true;
+			break;
+		case 'd': case 'D':
+			doubleLinkedList->DeleteActual();
+			break;
+		default:
+			std::cout << "That's Not An Option" << std::endl;
+			break;
+		}
+		std::cout << "\n--->";
+		std::cin >> input;
+	}
+	delete(this);
+}

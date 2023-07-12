@@ -1,11 +1,10 @@
 #pragma once
 #include "Graph.h"
 
-class LinkedList:private Graph
+class LinkedList:protected Graph
 {
 public:
 	LinkedList();
-	~LinkedList();
 	bool AddElement(int content);
 	bool DeleteActual();
 	using Graph::PrintActual;
