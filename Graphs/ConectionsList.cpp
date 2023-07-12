@@ -17,7 +17,7 @@ ConectionsList::~ConectionsList() {
 	move = start;
 	while (move != nullptr) {
 		move = move->GetNext();
-		delete(start);
+		delete start;
 		start = move;
 	}
 }

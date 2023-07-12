@@ -15,7 +15,7 @@ Node::Node(int content, Node* past) {
 }
 
 Node::~Node() {
-	delete(conectionList);
+	delete conectionList;
 }
 
 bool Node::ConectToNodeID(int content, int NodeID) {
