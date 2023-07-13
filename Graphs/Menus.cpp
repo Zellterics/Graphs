@@ -1,5 +1,61 @@
 #include "Menus.h"
 
+Menus::Menus(Pile* pile) {
+	int content, NodeID;
+	bool stop = false;
+	std::string input;
+	char filteredInput;
+	input = 'f';
+	while (!stop) {
+		filteredInput = input[0];
+		switch (filteredInput) {
+		case 'f': case 'F':
+			std::cout << "---FUNCTIONS    ---\n";
+			std::cout << "---AddElement   ---\n";
+			std::cout << "---GoTo         ---\n";
+			std::cout << "---Print        ---\n";
+			std::cout << "---Everything   ---\n";
+			std::cout << "---Terminate    ---\n";
+			std::cout << "---Delete       ---\n";
+			break;
+		case 'a': case 'A':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			pile->AddElement(content);
+			pile->PrintActual();
+			break;
+		case 'g': case 'G':
+			std::cout << "--->NodeID:";
+			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
+			if (!pile->GoToNodeID(NodeID)) {
+				std::cout << "--->ERROR: No Such NodeID\n";
+			}
+			pile->PrintActual();
+			break;
+		case 'p': case 'P':
+			pile->PrintActual();
+			break;
+		case 'e': case 'E':
+			pile->PrintEverything();
+			break;
+		case 't': case 'T':
+			stop = true;
+			break;
+		case 'd': case 'D':
+			pile->DeleteElement();
+			break;
+		default:
+			std::cout << "That's Not An Option" << std::endl;
+			break;
+		}
+		std::cout << "\n--->";
+		std::cin >> input;
+	}
+	delete(this);
+}
+
 Menus::Menus(Graph* graph) {
 	int content, NodeID;
 	bool stop = false;
@@ -26,14 +82,17 @@ Menus::Menus(Graph* graph) {
 		case 'a': case 'A':
 			std::cout << "--->Node content:";
 			std::cin >> content;
+			content = CinFail(content);
 			graph->AddNode(content);
 			graph->PrintActual();
 			break;
 		case 'c': case 'C':
 			std::cout << "--->Conection content:";
 			std::cin >> content;
+			content = CinFail(content);
 			std::cout << "\n--->Conection NodeID:";
 			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
 			graph->ConectToNodeID(content, NodeID);
 			graph->PrintActual();
 			std::cout << "--(" << content << ")-->";
@@ -42,6 +101,7 @@ Menus::Menus(Graph* graph) {
 		case 'g': case 'G':
 			std::cout << "--->NodeID:";
 			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
 			if (!graph->GoToNodeID(NodeID)) {
 				std::cout << "--->ERROR: No Such NodeID\n";
 			}
@@ -50,6 +110,7 @@ Menus::Menus(Graph* graph) {
 		case 's': case 'S':
 			std::cout << "--->NodeID:";
 			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
 			if (!graph->MoveToNodeID(NodeID)) {
 				std::cout << "--->ERROR: Not Such NodeID Conection\n";
 			}
@@ -64,6 +125,7 @@ Menus::Menus(Graph* graph) {
 		case 'n': case 'N':
 			std::cout << "--->NodeID:";
 			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
 			if (graph->GetNodeWithID(NodeID) == nullptr) {
 				std::cout << "--->ERROR: Not Such NodeID Conection\n";
 				graph->PrintActual();
@@ -116,17 +178,20 @@ Menus::Menus(LinkedList* linkedList) {
 		case 'a': case 'A':
 			std::cout << "--->Node content:";
 			std::cin >> content;
+			content = CinFail(content);
 			linkedList->AddElement(content);
 			linkedList->PrintActual();
 			break;
 		case 'i': case 'I':
 			std::cout << "--->Node content:";
 			std::cin >> content;
+			content = CinFail(content);
 			linkedList->AddNextToActual(content);
 			break;
 		case 'g': case 'G':
 			std::cout << "--->NodeID:";
 			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
 			if (!linkedList->GoToNodeID(NodeID)) {
 				std::cout << "--->ERROR: No Such NodeID\n";
 			}
@@ -176,17 +241,20 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 		case 'a': case 'A':
 			std::cout << "--->Node content:";
 			std::cin >> content;
+			content = CinFail(content);
 			doubleLinkedList->AddElement(content);
 			doubleLinkedList->PrintActual();
 			break;
 		case 'i': case 'I':
 			std::cout << "--->Node content:";
 			std::cin >> content;
+			content = CinFail(content);
 			doubleLinkedList->AddNextToActual(content);
 			break;
 		case 'g': case 'G':
 			std::cout << "--->NodeID:";
 			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
 			if (!doubleLinkedList->GoToNodeID(NodeID)) {
 				std::cout << "--->ERROR: No Such NodeID\n";
 			}

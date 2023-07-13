@@ -20,6 +20,7 @@ bool LinkedList::AddElement(int content) {
 	}
 	AddNode(content);
 	past->ConectToNodeID(1, actual->GetID());
+	return true;
 }
 
 bool LinkedList::AddNextToActual(int content) {

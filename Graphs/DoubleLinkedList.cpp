@@ -34,9 +34,14 @@ bool DoubleLinkedList::AddNextToActual(int content) {
 	save->DeleteConectionToNodeID(actual->GetNodeIDWithExtraUtilitys(2));
 	save->ConectToNodeID(1, actual->GetID(), 2);
 	actual->ConectToNodeID(1, save->GetID(), 1);
+	return true;
 }
 
 bool DoubleLinkedList::DeleteActual() {
+	if (actual == nullptr) {
+		std::cout << "ERROR: There's No Actual";
+		return false;
+	}
 	if (GetNodeWithID(actual->GetNodeIDWithExtraUtilitys(1)) == nullptr) {
 		Graph::DeleteActual();
 		return true;
@@ -50,6 +55,7 @@ bool DoubleLinkedList::DeleteActual() {
 	GetNodeWithID(actual->GetNodeIDWithExtraUtilitys(2))->DeleteConectionToNodeID(actual->GetID());
 	GetNodeWithID(actual->GetNodeIDWithExtraUtilitys(2))->ConectToNodeID(1, actual->GetNodeIDWithExtraUtilitys(1), 1);
 	Graph::DeleteActual();
+	return true;
 }
 
 Node* DoubleLinkedList::GetEndNode() {

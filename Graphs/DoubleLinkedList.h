@@ -1,7 +1,7 @@
 #pragma once
 #include "LinkedList.h"
 
-class DoubleLinkedList:private Graph
+class DoubleLinkedList:protected Graph
 {
 public:
 	DoubleLinkedList();
@@ -9,6 +9,9 @@ public:
 	bool AddNextToActual(int content);
 	bool DeleteActual();
 	Node* GetEndNode();
+	using Graph::GoToNodeID;
+	using Graph::PrintActual;
+	using Graph::PrintEverything;
 	friend class Menus;
 };
 
