@@ -12,6 +12,7 @@ public:
 	Node(int content, Node* past);
 	~Node();
 	bool ConectToNodeID(int content, int NodeID);
+	bool ConectToNodeID(int content, int NodeID, int extraUtilitys);
 	bool DeleteConectionToNodeID(int NodeID);
 	bool ExistedNodeID(int NodeID);
 	bool SetID(int NodeID);
@@ -22,6 +23,7 @@ public:
 	int GetGrade();
 	int GetID();
 	int GetNodeIDOnListPosition(int position);
+	int GetNodeIDWithExtraUtilitys(int extraUtilitys);
 	Node* GetNext();
 	Node* GetPast();
 	void PrintConectionList();

@@ -17,6 +17,7 @@ public:
 	int GetConectionOnListPosition(int position);
 	int GetConectionValueOnNodeID(int NodeID);
 	int GetGrade();
+	int GetNodeIDWithExtraUtilitys(int extraUtilitys);
 	void PrintAllConections();
 	void ReplaceValuesOnNodeID(int content, int NodeID, int extraUtilitys);
 };

@@ -54,6 +54,10 @@ int Node::GetNodeIDOnListPosition(int position) {
 	return conectionList->GetConectionOnListPosition(position);
 }
 
+int Node::GetNodeIDWithExtraUtilitys(int extraUtilitys) {
+	return conectionList->GetNodeIDWithExtraUtilitys(extraUtilitys);
+}
+
 Node* Node::GetNext() {
 	return next;
 }
@@ -87,4 +91,13 @@ bool Node::SetPast(Node* past) {
 
 bool Node::DeleteConectionToNodeID(int NodeID) {
 	return conectionList->DeleteConectionToNodeID(NodeID);
+}
+
+bool Node::ConectToNodeID(int content, int NodeID, int extraUtilitys) {
+	if (ExistedNodeID(NodeID)) {
+		std::cout << "ERROR: CONECTION ALREADY EXISTS" << std::endl;
+		return false;
+	}
+	conectionList->AddConection(content, NodeID, extraUtilitys);
+	return true;
 }

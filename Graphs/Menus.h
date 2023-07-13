@@ -6,5 +6,5 @@ class Menus
 public:
 	Menus(Graph* graph);
 	Menus(LinkedList* linkedList);
-	//Menus(DoubleLinkedList* doubleLinkedList);
+	Menus(DoubleLinkedList* doubleLinkedList);
 };

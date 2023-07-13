@@ -166,6 +166,7 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 		case 'f': case 'F':
 			std::cout << "---FUNCTIONS    ---\n";
 			std::cout << "---AddElement   ---\n";
+			std::cout << "---InPlaceAdd   ---\n";
 			std::cout << "---GoTo         ---\n";
 			std::cout << "---Print        ---\n";
 			std::cout << "---Everything   ---\n";
@@ -177,6 +178,11 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 			std::cin >> content;
 			doubleLinkedList->AddElement(content);
 			doubleLinkedList->PrintActual();
+			break;
+		case 'i': case 'I':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			doubleLinkedList->AddNextToActual(content);
 			break;
 		case 'g': case 'G':
 			std::cout << "--->NodeID:";

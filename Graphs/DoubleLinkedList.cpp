@@ -1,27 +1,64 @@
 #include "DoubleLinkedList.h"
 
-DoubleLinkedList::DoubleLinkedList() : LinkedList() {
+DoubleLinkedList::DoubleLinkedList() : Graph() {
 
 }
 
 bool DoubleLinkedList::AddElement(int content) {
-	LinkedList::AddElement(content);
-	if (actual->GetPast() != nullptr) {
-		actual->ConectToNodeID(1, actual->GetPast()->GetID());
+	if (actual == nullptr) {
+		AddNode(content);
+		return true;
 	}
+	AddNode(content);
+	move = GetEndNode();
+	move->ConectToNodeID(1, actual->GetID(), 2);
+	actual->ConectToNodeID(1, move->GetID(), 1);
 	return true;
 }
 
+bool DoubleLinkedList::AddNextToActual(int content) {
+	if (actual == nullptr) {
+		AddNode(content);
+		return true;
+	}
+	if (actual == GetEndNode()) {
+		AddElement(content);
+		return true;
+	}
+	Node* save = actual;
+	AddNode(content);
+	move = GetNodeWithID(save->GetNodeIDWithExtraUtilitys(2));
+	move->DeleteConectionToNodeID(save->GetID());
+	move->ConectToNodeID(1, actual->GetID(), 1);
+	actual->ConectToNodeID(1, move->GetID(), 2);
+	save->DeleteConectionToNodeID(actual->GetNodeIDWithExtraUtilitys(2));
+	save->ConectToNodeID(1, actual->GetID(), 2);
+	actual->ConectToNodeID(1, save->GetID(), 1);
+}
+
 bool DoubleLinkedList::DeleteActual() {
-	if (actual->GetPast() == nullptr) {
+	if (GetNodeWithID(actual->GetNodeIDWithExtraUtilitys(1)) == nullptr) {
 		Graph::DeleteActual();
 		return true;
 	}
-	if (actual->GetNext() == nullptr) {
+	if (GetNodeWithID(actual->GetNodeIDWithExtraUtilitys(2)) == nullptr) {
 		Graph::DeleteActual();
 		return true;
 	}
-	actual->GetPast()->ConectToNodeID(1, actual->GetNext()->GetID());
-	actual->GetNext()->ConectToNodeID(1, actual->GetPast()->GetID());
+	GetNodeWithID(actual->GetNodeIDWithExtraUtilitys(1))->DeleteConectionToNodeID(actual->GetID());
+	GetNodeWithID(actual->GetNodeIDWithExtraUtilitys(1))->ConectToNodeID(1, actual->GetNodeIDWithExtraUtilitys(2), 2);
+	GetNodeWithID(actual->GetNodeIDWithExtraUtilitys(2))->DeleteConectionToNodeID(actual->GetID());
+	GetNodeWithID(actual->GetNodeIDWithExtraUtilitys(2))->ConectToNodeID(1, actual->GetNodeIDWithExtraUtilitys(1), 1);
 	Graph::DeleteActual();
+}
+
+Node* DoubleLinkedList::GetEndNode() {
+	move = start;
+	while (move != nullptr) {
+		if (move->GetNodeIDWithExtraUtilitys(2) == -1) {
+			return move;
+		}
+		move = move->GetNext();
+	}
+	return nullptr;
 }

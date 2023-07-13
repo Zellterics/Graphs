@@ -93,6 +93,17 @@ int ConectionsList::GetConectionExtraUtilitysOnNodeID(int NodeID) {
 	return -1;
 }
 
+int ConectionsList::GetNodeIDWithExtraUtilitys(int extraUtilitys) {
+	move = start;
+	while (move != nullptr) {
+		if (move->GetExtraUtilitys() == extraUtilitys) {
+			return move->GetNodeID();
+		}
+		move = move->GetNext();
+	}
+	return -1;
+}
+
 void ConectionsList::ReplaceValuesOnNodeID(int content, int NodeID, int extraUtilitys) {
 	move = start;
 	while(move != nullptr) {
