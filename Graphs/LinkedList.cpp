@@ -5,23 +5,59 @@ LinkedList::LinkedList() : Graph() {
 }
 
 bool LinkedList::AddElement(int content) {
-	AddNode(content);
-	if (actual->GetPast() == nullptr) {
+	Node* past = nullptr;
+	move = start;
+	while (move != nullptr) {
+		if (move->GetNodeIDOnListPosition(1) == -1) {
+			past = move;
+			break;
+		}
+		move = move->GetNext();
+	}
+	if (past == nullptr) {
+		AddNode(content);
 		return true;
 	}
-	actual->GetPast()->ConectToNodeID(1, actual->GetID());
+	AddNode(content);
+	past->ConectToNodeID(1, actual->GetID());
+}
+
+bool LinkedList::AddNextToActual(int content) {
+	if (actual->GetNodeIDOnListPosition(1) == -1) {
+		AddElement(content);
+	}
+	Node* save = actual;
+	AddNode(content);
+	actual->ConectToNodeID(1, save->GetNodeIDOnListPosition(1));
+	save->DeleteConectionToNodeID(save->GetNodeIDOnListPosition(1));
+	save->ConectToNodeID(1, actual->GetID());
 	return true;
 }
 
 bool LinkedList::DeleteActual() {
-	if (actual->GetPast() == nullptr) {
+	Node* past = GetPastOfNode(actual);
+	if (past == nullptr) {
 		Graph::DeleteActual();
 		return true;
 	}
-	if (actual->GetNext() == nullptr) {
+	if (actual->GetNodeIDOnListPosition(1) == -1) {
 		Graph::DeleteActual();
 		return true;
 	}
-	actual->GetPast()->ConectToNodeID(1, actual->GetNext()->GetID());
+	past->ConectToNodeID(1, actual->GetNodeIDOnListPosition(1));
 	Graph::DeleteActual();
+	return true;
+}
+
+Node* LinkedList::GetPastOfNode(Node* found) {
+	move = start;
+	Node* past = nullptr;
+	while (move != nullptr) {
+		if (move->ExistedNodeID(found->GetID())) {
+			past = move;
+			break;
+		}
+		move = move->GetNext();
+	}
+	return past;
 }

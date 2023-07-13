@@ -106,6 +106,7 @@ Menus::Menus(LinkedList* linkedList) {
 		case 'f': case 'F':
 			std::cout << "---FUNCTIONS    ---\n";
 			std::cout << "---AddElement   ---\n";
+			std::cout << "---InPlaceAdd   ---\n";
 			std::cout << "---GoTo         ---\n";
 			std::cout << "---Print        ---\n";
 			std::cout << "---Everything   ---\n";
@@ -117,6 +118,11 @@ Menus::Menus(LinkedList* linkedList) {
 			std::cin >> content;
 			linkedList->AddElement(content);
 			linkedList->PrintActual();
+			break;
+		case 'i': case 'I':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			linkedList->AddNextToActual(content);
 			break;
 		case 'g': case 'G':
 			std::cout << "--->NodeID:";

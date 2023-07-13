@@ -74,12 +74,23 @@ bool Graph::ConectToNodeID(int content, int NodeID) {
 		std::cout << "ERROR: The Graph Is Empty" << std::endl;
 		return false;
 	}
-	if (NodeID > end->GetID()) {
+	if (!ExistedID(NodeID)) {
 		std::cout << "ERROR: NODE " << NodeID << " DOESN'T EXISTS" << std::endl;
 		return false;
 	}
 	actual->ConectToNodeID(content, NodeID);
 	return true;
+}
+
+bool Graph::ExistedID(int NodeID) {
+	move = start;
+	while (move != nullptr) {
+		if (move->GetID() == NodeID) {
+			return true;
+		}
+		move = move->GetNext();
+	}
+	return false;
 }
 
 bool Graph::GoToNodeID(int NodeID) {

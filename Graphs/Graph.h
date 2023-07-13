@@ -15,6 +15,7 @@ public:
 	bool DeleteConectionToNodeID(int NodeID);
 	bool DeleteConectionToNodeID(int NodeID, bool DeleteDual);
 	bool DualConectToNodeID(int content, int NodeID);
+	bool ExistedID(int NodeID);
 	bool GoToNodeID(int NodeID);
 	bool MoveToNodeID(int NodeID);
 	int GetEndNodeID();
