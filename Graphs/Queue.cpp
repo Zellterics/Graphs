@@ -1,12 +1,12 @@
-#include "Pile.h"
+#include "Queue.h"
 
-Pile::Pile() : DoubleLinkedList() {
+Queue::Queue() : DoubleLinkedList() {
 
 }
 
-bool Pile::DeleteElement() {
+bool Queue::DeleteElement() {
 	Node* save = actual;
-	actual = GetEndNode();
+	actual = GetStartNode();
 	DeleteActual();
 	if (save == nullptr) {
 		actual = start;

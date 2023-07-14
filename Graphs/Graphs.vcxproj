@@ -136,6 +136,7 @@
     <ClCompile Include="Menus.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Pile.cpp" />
+    <ClCompile Include="Queue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Conection.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Menus.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Pile.h" />
+    <ClInclude Include="Queue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

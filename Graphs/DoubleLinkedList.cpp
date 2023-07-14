@@ -68,3 +68,14 @@ Node* DoubleLinkedList::GetEndNode() {
 	}
 	return nullptr;
 }
+
+Node* DoubleLinkedList::GetStartNode() {
+	move = start;
+	while (move != nullptr) {
+		if (move->GetNodeIDWithExtraUtilitys(1) == -1) {
+			return move;
+		}
+		move = move->GetNext();
+	}
+	return nullptr;
+}

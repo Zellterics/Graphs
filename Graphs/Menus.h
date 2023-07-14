@@ -3,11 +3,13 @@
 #include "LinkedList.h"
 #include "DoubleLinkedList.h"
 #include "Graph.h"
+#include "Queue.h"
 
 class Menus
 {
 public:
 	Menus(Pile* pile);
+	Menus(Queue* queue);
 	Menus(Graph* graph);
 	Menus(LinkedList* linkedList);
 	Menus(DoubleLinkedList* doubleLinkedList);

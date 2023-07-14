@@ -56,6 +56,62 @@ Menus::Menus(Pile* pile) {
 	delete(this);
 }
 
+Menus::Menus(Queue* queue) {
+	int content, NodeID;
+	bool stop = false;
+	std::string input;
+	char filteredInput;
+	input = 'f';
+	while (!stop) {
+		filteredInput = input[0];
+		switch (filteredInput) {
+		case 'f': case 'F':
+			std::cout << "---FUNCTIONS    ---\n";
+			std::cout << "---AddElement   ---\n";
+			std::cout << "---GoTo         ---\n";
+			std::cout << "---Print        ---\n";
+			std::cout << "---Everything   ---\n";
+			std::cout << "---Terminate    ---\n";
+			std::cout << "---Delete       ---\n";
+			break;
+		case 'a': case 'A':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			queue->AddElement(content);
+			queue->PrintActual();
+			break;
+		case 'g': case 'G':
+			std::cout << "--->NodeID:";
+			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
+			if (!queue->GoToNodeID(NodeID)) {
+				std::cout << "--->ERROR: No Such NodeID\n";
+			}
+			queue->PrintActual();
+			break;
+		case 'p': case 'P':
+			queue->PrintActual();
+			break;
+		case 'e': case 'E':
+			queue->PrintEverything();
+			break;
+		case 't': case 'T':
+			stop = true;
+			break;
+		case 'd': case 'D':
+			queue->DeleteElement();
+			break;
+		default:
+			std::cout << "That's Not An Option" << std::endl;
+			break;
+		}
+		std::cout << "\n--->";
+		std::cin >> input;
+	}
+	delete(this);
+}
+
 Menus::Menus(Graph* graph) {
 	int content, NodeID;
 	bool stop = false;

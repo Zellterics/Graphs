@@ -9,6 +9,7 @@ public:
 	bool AddNextToActual(int content);
 	bool DeleteActual();
 	Node* GetEndNode();
+	Node* GetStartNode();
 	using Graph::GoToNodeID;
 	using Graph::PrintActual;
 	using Graph::PrintEverything;
