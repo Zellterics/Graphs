@@ -82,6 +82,15 @@ bool Graph::ConectToNodeID(int content, int NodeID) {
 	return true;
 }
 
+bool Graph::ChangeActualNodeContent(int content) {
+	if (start == nullptr) {
+		std::cout << "ERROR: The Graph Is Empty" << std::endl;
+		return false;
+	}
+	actual->SetContent(content);
+	return true;
+}
+
 bool Graph::ExistedID(int NodeID) {
 	move = start;
 	while (move != nullptr) {

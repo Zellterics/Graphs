@@ -20,7 +20,8 @@ public:
 		if (std::cin.fail()) {
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			return (T)69;
+			std::cout << "ERROR: cin overflow, changing the value you entered to 23";
+			return (T)23;
 		}
 		return content;
 	}

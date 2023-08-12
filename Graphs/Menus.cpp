@@ -15,8 +15,9 @@ Menus::Menus(Pile* pile) {
 			std::cout << "---GoTo         ---\n";
 			std::cout << "---Print        ---\n";
 			std::cout << "---Everything   ---\n";
-			std::cout << "---Terminate    ---\n";
 			std::cout << "---Delete       ---\n";
+			std::cout << "---ModifyContent---\n";
+			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
 			std::cout << "--->Node content:";
@@ -46,6 +47,13 @@ Menus::Menus(Pile* pile) {
 		case 'd': case 'D':
 			pile->DeleteElement();
 			break;
+		case 'm': case 'M':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			pile->ChangeActualNodeContent(content);
+			pile->PrintActual();
+			break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
 			break;
@@ -71,8 +79,9 @@ Menus::Menus(Queue* queue) {
 			std::cout << "---GoTo         ---\n";
 			std::cout << "---Print        ---\n";
 			std::cout << "---Everything   ---\n";
-			std::cout << "---Terminate    ---\n";
 			std::cout << "---Delete       ---\n";
+			std::cout << "---ModifyContent---\n";
+			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
 			std::cout << "--->Node content:";
@@ -101,6 +110,13 @@ Menus::Menus(Queue* queue) {
 			break;
 		case 'd': case 'D':
 			queue->DeleteElement();
+			break;
+		case 'm': case 'M':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			queue->ChangeActualNodeContent(content);
+			queue->PrintActual();
 			break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
@@ -131,9 +147,10 @@ Menus::Menus(Graph* graph) {
 			std::cout << "---WholeSearch  ---\n";
 			std::cout << "---Print        ---\n";
 			std::cout << "---Everything   ---\n";
-			std::cout << "---Terminate    ---\n";
 			std::cout << "---BorderNodes  ---\n";
-			std::cout << "---DeleteNode   ---\n";
+			std::cout << "---DeleteActual ---\n";
+			std::cout << "---ModifyContent---\n";
+			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
 			std::cout << "--->Node content:";
@@ -201,6 +218,13 @@ Menus::Menus(Graph* graph) {
 		case 'd': case 'D':
 			graph->DeleteActual();
 			break;
+		case 'm': case 'M':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			graph->ChangeActualNodeContent(content);
+			graph->PrintActual();
+			break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
 			break;
@@ -228,8 +252,9 @@ Menus::Menus(LinkedList* linkedList) {
 			std::cout << "---GoTo         ---\n";
 			std::cout << "---Print        ---\n";
 			std::cout << "---Everything   ---\n";
-			std::cout << "---Terminate    ---\n";
 			std::cout << "---DeleteActual ---\n";
+			std::cout << "---ModifyContent---\n";
+			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
 			std::cout << "--->Node content:";
@@ -265,6 +290,13 @@ Menus::Menus(LinkedList* linkedList) {
 		case 'd': case 'D':
 			linkedList->DeleteActual();
 			break;
+		case 'm': case 'M':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			linkedList->ChangeActualNodeContent(content);
+			linkedList->PrintActual();
+			break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
 			break;
@@ -291,8 +323,9 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 			std::cout << "---GoTo         ---\n";
 			std::cout << "---Print        ---\n";
 			std::cout << "---Everything   ---\n";
-			std::cout << "---Terminate    ---\n";
 			std::cout << "---DeleteActual ---\n";
+			std::cout << "---ModifyContent---\n";
+			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
 			std::cout << "--->Node content:";
@@ -327,6 +360,13 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 			break;
 		case 'd': case 'D':
 			doubleLinkedList->DeleteActual();
+			break;
+		case 'm': case 'M':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			doubleLinkedList->ChangeActualNodeContent(content);
+			doubleLinkedList->PrintActual();
 			break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;

@@ -11,6 +11,7 @@ public:
 	Graph(int content);
 	bool AddNode(int content);
 	bool ConectToNodeID(int content, int NodeID);
+	bool ChangeActualNodeContent(int content);
 	bool DeleteActual();
 	bool DeleteConectionToNodeID(int NodeID);
 	bool DeleteConectionToNodeID(int NodeID, bool DeleteDual);

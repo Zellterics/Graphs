@@ -15,6 +15,7 @@ public:
 	bool ConectToNodeID(int content, int NodeID, int extraUtilitys);
 	bool DeleteConectionToNodeID(int NodeID);
 	bool ExistedNodeID(int NodeID);
+	bool SetContent(int content);
 	bool SetID(int NodeID);
 	bool SetNext(Node* next);
 	bool SetPast(Node* past);

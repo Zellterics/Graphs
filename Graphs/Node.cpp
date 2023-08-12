@@ -74,6 +74,11 @@ void Node::PrintThis() {
 	std::cout << "Node[content:" << content << " | ID:" << ID << "]";
 }
 
+bool Node::SetContent(int content) {
+	this->content = content;
+	return true;
+}
+
 bool Node::SetID(int NodeID) {
 	ID = NodeID;
 	return true;
