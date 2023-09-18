@@ -9,6 +9,7 @@ protected:
 public:
 	Graph();
 	Graph(int content);
+	~Graph();
 	bool AddNode(int content);
 	bool ConectToNodeID(int content, int NodeID);
 	bool ChangeActualNodeContent(int content);
@@ -28,4 +29,12 @@ public:
 	void PrintAllNodes();
 	void PrintEverything();
 	void PrintWithNodeID(int NodeID);
+	template <typename T>
+	T GetActualData() {
+		return actual->GetData();
+	}
+	template <typename T>
+	T SetActualData(T data) {
+		return actual->SetData(data);
+	}
 };

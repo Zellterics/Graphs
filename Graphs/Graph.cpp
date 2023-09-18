@@ -13,6 +13,12 @@ Graph::Graph() {
 	actual = nullptr;
 }
 
+Graph::~Graph() {
+	while (actual != nullptr) {
+		DeleteActual();
+	}
+}
+
 bool Graph::AddNode(int content) {
 	if (start == nullptr) {
 		start = new Node(content, nullptr);

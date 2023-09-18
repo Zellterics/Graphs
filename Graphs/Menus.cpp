@@ -61,7 +61,6 @@ Menus::Menus(Pile* pile) {
 		std::cout << "\n--->";
 		std::cin >> input;
 	}
-	delete(this);
 }
 
 Menus::Menus(Queue* queue) {
@@ -125,7 +124,6 @@ Menus::Menus(Queue* queue) {
 		std::cout << "\n--->";
 		std::cin >> input;
 	}
-	delete(this);
 }
 
 Menus::Menus(Graph* graph) {
@@ -232,7 +230,6 @@ Menus::Menus(Graph* graph) {
 		std::cout << "\n--->";
 		std::cin >> input;
 	}
-	delete(this);
 }
 
 
@@ -304,7 +301,6 @@ Menus::Menus(LinkedList* linkedList) {
 		std::cout << "\n--->";
 		std::cin >> input;
 	}
-	delete(this);
 }
 
 Menus::Menus(DoubleLinkedList* doubleLinkedList) {
@@ -375,5 +371,4 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 		std::cout << "\n--->";
 		std::cin >> input;
 	}
-	delete(this);
 }

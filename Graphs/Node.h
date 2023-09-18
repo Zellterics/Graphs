@@ -5,6 +5,8 @@
 class Node
 {
 private:
+	template <typename T>
+	static T data;
 	int ID, content;
 	ConectionsList* conectionList = nullptr;
 	Node* past, * next = nullptr, * mySelf = this;
@@ -29,4 +31,12 @@ public:
 	Node* GetPast();
 	void PrintConectionList();
 	void PrintThis();
+	template <typename T>
+	T GetData() {
+		return data;
+	}
+	template <typename T>
+	T SetData(T data) {
+		this->data = data;
+	}
 };
