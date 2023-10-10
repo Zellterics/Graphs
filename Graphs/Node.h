@@ -8,8 +8,8 @@ private:
 	template <typename T>
 	static T data;
 	int ID, content;
-	ConectionsList* conectionList = nullptr;
-	Node* past, * next = nullptr, * mySelf = this;
+	ConectionsList* conectionList;
+	Node* past, * next, * mySelf;
 public:
 	Node(int content, Node* past);
 	~Node();

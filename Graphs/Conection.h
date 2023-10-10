@@ -4,8 +4,8 @@
 class Conection
 {
 private:
-	int ID, content, NodeID, extraUtilitys = -2;
-	Conection* past, *next = nullptr, *mySelf = this;
+	int ID, content, NodeID, extraUtilitys;
+	Conection* past, *next, *mySelf;
 public:
 	Conection(int content, Conection* past, int NodeID);
 	Conection(int content, Conection* past, int NodeID, int extraUtilitys);

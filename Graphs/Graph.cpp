@@ -138,19 +138,16 @@ bool Graph::MoveToNodeID(int NodeID) {
 	}
 }
 
-void Graph::PrintEverything() {
-	if (start == nullptr) {
-		std::cout << "ERROR: The Graph Is Empty" << std::endl;
-		return;
+int Graph::CountNodes() {
+	if (actual == nullptr) {
+		return 0;
 	}
-	move = start;
-	while (move != nullptr) {
-		move->PrintThis();
-		std::cout << "\n";
-		move->PrintConectionList();
-		std::cout << "\n\n";
+	int i = 1;
+	while (move->GetNext() != nullptr) {
 		move = move->GetNext();
+		i++;
 	}
+	return i;
 }
 
 int Graph::PathFindingToNodeID(int NodeID) {
@@ -211,6 +208,18 @@ void Graph::PathFindingToAll() {
 	return;
 }
 
+Node* Graph::GetActualNode() {
+	return actual;
+}
+
+Node* Graph::GetEndNode() {
+	return end;
+}
+
+Node* Graph::GetNextNode() {
+	return actual->GetNext();
+}
+
 Node* Graph::GetNodeWithID(int NodeID) {
 	if (start == nullptr) {
 		std::cout << "ERROR: The Graph Is Empty" << std::endl;
@@ -226,19 +235,12 @@ Node* Graph::GetNodeWithID(int NodeID) {
 	return nullptr;
 }
 
-int Graph::GetEndNodeID() {
-	if (actual == nullptr) {
-		std::cout << "ERROR: There's No End Node" << std::endl;
-		return -1;
-	}
-	move = actual;
-	Node* Save = actual;
-	while (move != nullptr) {
-		Save = move;
-		move = move->GetNext();
-	}
-	move = actual;
-	return Save->GetID();
+Node* Graph::GetPastNode() {
+	return actual->GetPast();
+}
+
+Node* Graph::GetStartNode() {
+	return start;
 }
 
 bool Graph::DualConectToNodeID(int content, int NodeID) {

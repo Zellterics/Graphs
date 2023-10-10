@@ -39,7 +39,7 @@ Menus::Menus(Pile* pile) {
 			pile->PrintActual();
 			break;
 		case 'e': case 'E':
-			pile->PrintEverything();
+			PrintEverything(pile);
 			break;
 		case 't': case 'T':
 			stop = true;
@@ -102,7 +102,7 @@ Menus::Menus(Queue* queue) {
 			queue->PrintActual();
 			break;
 		case 'e': case 'E':
-			queue->PrintEverything();
+			PrintEverything(queue);
 			break;
 		case 't': case 'T':
 			stop = true;
@@ -191,7 +191,7 @@ Menus::Menus(Graph* graph) {
 			graph->PrintActual();
 			break;
 		case 'e': case 'E':
-			graph->PrintEverything();
+			PrintEverything(graph);
 			break;
 		case 'n': case 'N':
 			std::cout << "--->NodeID:";
@@ -279,7 +279,7 @@ Menus::Menus(LinkedList* linkedList) {
 			linkedList->PrintActual();
 			break;
 		case 'e': case 'E':
-			linkedList->PrintEverything();
+			PrintEverything(linkedList);
 			break;
 		case 't': case 'T':
 			stop = true;
@@ -349,7 +349,7 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 			doubleLinkedList->PrintActual();
 			break;
 		case 'e': case 'E':
-			doubleLinkedList->PrintEverything();
+			PrintEverything(doubleLinkedList);
 			break;
 		case 't': case 'T':
 			stop = true;

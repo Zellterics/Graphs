@@ -3,6 +3,10 @@
 Node::Node(int content, Node* past) {
 	this->content = content;
 	this->past = past;
+
+	next = nullptr;
+	mySelf = this;
+
 	if (past == nullptr) {
 		ID = 0;
 		this->content = content;
@@ -11,6 +15,7 @@ Node::Node(int content, Node* past) {
 		ID = past->ID + 1;
 		past->SetNext(mySelf);
 	}
+
 	conectionList = new ConectionsList(0, ID);
 }
 

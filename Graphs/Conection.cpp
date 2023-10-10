@@ -4,6 +4,12 @@ Conection::Conection(int content, Conection* past, int NodeID) {
 	this->NodeID = NodeID;
 	this->content = content;
 	this->past = past;
+
+	extraUtilitys = -2;
+
+	next = nullptr;
+	mySelf = this;
+
 	if (past == nullptr) {
 		ID = 0;
 	}
@@ -18,6 +24,10 @@ Conection::Conection(int content, Conection* past, int NodeID, int extraUtilitys
 	this->content = content;
 	this->past = past;
 	this->extraUtilitys = extraUtilitys;
+
+	next = nullptr;
+	mySelf = this;
+
 	if (past == nullptr) {
 		ID = 0;
 	}
