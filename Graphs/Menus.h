@@ -14,36 +14,13 @@ public:
 	Menus(LinkedList* linkedList);
 	Menus(DoubleLinkedList* doubleLinkedList);
 	
-	void PrintActual() {
 
-	}
-	void PrintActualConections() {
+	void PathFindingToAll(Graph* graph);
+	void PrintActual(Graph* graph);
+	void PrintEverything(Graph* graph);
+	void PrintWithNodeID(Graph* graph, int NodeID);
 
-	}
-	void PrintAllNodes() {
 
-	}
-	template <typename T>
-	void PrintEverything(T* graph) {
-		if (graph->GetStartNode() == nullptr) {
-			std::cout << "ERROR: The Graph Is Empty" << std::endl;
-			return;
-		}
-		Node* move = graph->GetStartNode();
-		while (move != nullptr) {
-			move->PrintThis();
-			std::cout << "\n";
-			move->PrintConectionList();
-			std::cout << "\n*--------------------*\n";
-			move = move->GetNext();
-		}
-	}
-
-	void PrintWithNodeID(int NodeID) {
-
-	}
-
-	
 	template <typename T>
 	T CinFail(T content) {
 		if (std::cin.fail()) {

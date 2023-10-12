@@ -29,8 +29,7 @@ public:
 	int GetNodeIDWithExtraUtilitys(int extraUtilitys);
 	Node* GetNext();
 	Node* GetPast();
-	void PrintConectionList();
-	void PrintThis();
+	ConectionsList* GetConectionList();
 	template <typename T>
 	T GetData() {
 		return data;

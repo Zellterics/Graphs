@@ -37,10 +37,6 @@ Conection::Conection(int content, Conection* past, int NodeID, int extraUtilitys
 	}
 }
 
-void Conection::PrintConection() {
-	std::cout << "--(" << content << ", ID:" << ID << ")-->NodeID[" << NodeID << "]";
-}
-
 bool Conection::SetNext(Conection* next) {
 	this->next = next;
 	return true;

@@ -17,6 +17,7 @@ Menus::Menus(Pile* pile) {
 			std::cout << "---Everything   ---\n";
 			std::cout << "---Delete       ---\n";
 			std::cout << "---ModifyContent---\n";
+			std::cout << "---HowManyNodes ---\n";
 			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
@@ -24,7 +25,7 @@ Menus::Menus(Pile* pile) {
 			std::cin >> content;
 			content = CinFail(content);
 			pile->AddElement(content);
-			pile->PrintActual();
+			PrintActual(pile);
 			break;
 		case 'g': case 'G':
 			std::cout << "--->NodeID:";
@@ -33,10 +34,10 @@ Menus::Menus(Pile* pile) {
 			if (!pile->GoToNodeID(NodeID)) {
 				std::cout << "--->ERROR: No Such NodeID\n";
 			}
-			pile->PrintActual();
+			PrintActual(pile);
 			break;
 		case 'p': case 'P':
-			pile->PrintActual();
+			PrintActual(pile);
 			break;
 		case 'e': case 'E':
 			PrintEverything(pile);
@@ -52,7 +53,10 @@ Menus::Menus(Pile* pile) {
 			std::cin >> content;
 			content = CinFail(content);
 			pile->ChangeActualNodeContent(content);
-			pile->PrintActual();
+			PrintActual(pile);
+			break;
+		case 'h': case 'H':
+			std::cout << "There are " << pile->CountNodes() << " Nodes\n";
 			break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
@@ -80,6 +84,7 @@ Menus::Menus(Queue* queue) {
 			std::cout << "---Everything   ---\n";
 			std::cout << "---Delete       ---\n";
 			std::cout << "---ModifyContent---\n";
+			std::cout << "---HowManyNodes ---\n";
 			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
@@ -87,7 +92,7 @@ Menus::Menus(Queue* queue) {
 			std::cin >> content;
 			content = CinFail(content);
 			queue->AddElement(content);
-			queue->PrintActual();
+			PrintActual(queue);
 			break;
 		case 'g': case 'G':
 			std::cout << "--->NodeID:";
@@ -96,10 +101,10 @@ Menus::Menus(Queue* queue) {
 			if (!queue->GoToNodeID(NodeID)) {
 				std::cout << "--->ERROR: No Such NodeID\n";
 			}
-			queue->PrintActual();
+			PrintActual(queue);
 			break;
 		case 'p': case 'P':
-			queue->PrintActual();
+			PrintActual(queue);
 			break;
 		case 'e': case 'E':
 			PrintEverything(queue);
@@ -115,7 +120,10 @@ Menus::Menus(Queue* queue) {
 			std::cin >> content;
 			content = CinFail(content);
 			queue->ChangeActualNodeContent(content);
-			queue->PrintActual();
+			PrintActual(queue);
+			break;
+		case 'h': case 'H':
+			std::cout << "There are " << queue->CountNodes() << " Nodes\n";
 			break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
@@ -148,6 +156,7 @@ Menus::Menus(Graph* graph) {
 			std::cout << "---BorderNodes  ---\n";
 			std::cout << "---DeleteActual ---\n";
 			std::cout << "---ModifyContent---\n";
+			std::cout << "---HowManyNodes ---\n";
 			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
@@ -155,7 +164,7 @@ Menus::Menus(Graph* graph) {
 			std::cin >> content;
 			content = CinFail(content);
 			graph->AddNode(content);
-			graph->PrintActual();
+			PrintActual(graph);
 			break;
 		case 'c': case 'C':
 			std::cout << "--->Conection content:";
@@ -165,9 +174,9 @@ Menus::Menus(Graph* graph) {
 			std::cin >> NodeID;
 			NodeID = CinFail(NodeID);
 			graph->ConectToNodeID(content, NodeID);
-			graph->PrintActual();
+			PrintActual(graph);
 			std::cout << "--(" << content << ")-->";
-			graph->PrintWithNodeID(NodeID);
+			PrintWithNodeID(graph, NodeID);
 			break;
 		case 'g': case 'G':
 			std::cout << "--->NodeID:";
@@ -176,7 +185,7 @@ Menus::Menus(Graph* graph) {
 			if (!graph->GoToNodeID(NodeID)) {
 				std::cout << "--->ERROR: No Such NodeID\n";
 			}
-			graph->PrintActual();
+			PrintActual(graph);
 			break;
 		case 's': case 'S':
 			std::cout << "--->NodeID:";
@@ -185,33 +194,51 @@ Menus::Menus(Graph* graph) {
 			if (!graph->MoveToNodeID(NodeID)) {
 				std::cout << "--->ERROR: Not Such NodeID Conection\n";
 			}
-			graph->PrintActual();
+			PrintActual(graph);
 			break;
 		case 'p': case 'P':
-			graph->PrintActual();
+			PrintActual(graph);
 			break;
 		case 'e': case 'E':
 			PrintEverything(graph);
 			break;
-		case 'n': case 'N':
+		case 'n': case 'N': {
 			std::cout << "--->NodeID:";
 			std::cin >> NodeID;
 			NodeID = CinFail(NodeID);
 			if (graph->GetNodeWithID(NodeID) == nullptr) {
 				std::cout << "--->ERROR: Not Such NodeID Conection\n";
-				graph->PrintActual();
+				PrintActual(graph);
 				continue;
 			}
-			graph->PathFindingToNodeID(NodeID);
-			break;
+			ConectionsList temp = graph->PathFindingToNodeID(NodeID);
+			Conection* move = temp.GetStart();
+			while (move != nullptr) {
+				std::cout << "\n";
+				std::cout << "--(" << move->GetValue() << ", ID:" << move->GetID() << ")-->NodeID[" << move->GetNodeID() << "]";
+				move = move->GetNext();
+			}
+			break; }
 		case 'w': case 'W':
-			graph->PathFindingToAll();
+			PathFindingToAll(graph);
 			break;
 		case 't': case 'T':
 			stop = true;
 			break;
-		case 'b': case 'B':
-			graph->PrintActualConections();
+		case 'b': case 'B': {
+			ConectionsList* erase = graph->GetActualConections();
+			if (erase->GetConectionOnListPosition(0) == -1) {
+				delete erase;
+			}
+			else {
+				Conection* move = erase->GetStart();
+				while (move != nullptr) {
+					std::cout << "\n";
+					std::cout << "--(" << move->GetValue() << ", ID:" << move->GetID() << ")-->NodeID[" << move->GetNodeID() << "]";
+					move = move->GetNext();
+				}
+				delete erase;
+			}}
 			break;
 		case 'd': case 'D':
 			graph->DeleteActual();
@@ -221,7 +248,10 @@ Menus::Menus(Graph* graph) {
 			std::cin >> content;
 			content = CinFail(content);
 			graph->ChangeActualNodeContent(content);
-			graph->PrintActual();
+			PrintActual(graph);
+			break;
+		case 'h': case 'H':
+			std::cout << "There are " << graph->CountNodes() << " Nodes\n";
 			break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
@@ -251,6 +281,7 @@ Menus::Menus(LinkedList* linkedList) {
 			std::cout << "---Everything   ---\n";
 			std::cout << "---DeleteActual ---\n";
 			std::cout << "---ModifyContent---\n";
+			std::cout << "---HowManyNodes ---\n";
 			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
@@ -258,7 +289,7 @@ Menus::Menus(LinkedList* linkedList) {
 			std::cin >> content;
 			content = CinFail(content);
 			linkedList->AddElement(content);
-			linkedList->PrintActual();
+			PrintActual(linkedList);
 			break;
 		case 'i': case 'I':
 			std::cout << "--->Node content:";
@@ -273,10 +304,10 @@ Menus::Menus(LinkedList* linkedList) {
 			if (!linkedList->GoToNodeID(NodeID)) {
 				std::cout << "--->ERROR: No Such NodeID\n";
 			}
-			linkedList->PrintActual();
+			PrintActual(linkedList);
 			break;
 		case 'p': case 'P':
-			linkedList->PrintActual();
+			PrintActual(linkedList);
 			break;
 		case 'e': case 'E':
 			PrintEverything(linkedList);
@@ -292,7 +323,10 @@ Menus::Menus(LinkedList* linkedList) {
 			std::cin >> content;
 			content = CinFail(content);
 			linkedList->ChangeActualNodeContent(content);
-			linkedList->PrintActual();
+			PrintActual(linkedList);
+			break;
+		case 'h': case 'H':
+			std::cout << "There are " << linkedList->CountNodes() << " Nodes\n";
 			break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
@@ -321,6 +355,7 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 			std::cout << "---Everything   ---\n";
 			std::cout << "---DeleteActual ---\n";
 			std::cout << "---ModifyContent---\n";
+			std::cout << "---HowManyNodes ---\n";
 			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
@@ -328,7 +363,7 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 			std::cin >> content;
 			content = CinFail(content);
 			doubleLinkedList->AddElement(content);
-			doubleLinkedList->PrintActual();
+			PrintActual(doubleLinkedList);
 			break;
 		case 'i': case 'I':
 			std::cout << "--->Node content:";
@@ -343,10 +378,10 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 			if (!doubleLinkedList->GoToNodeID(NodeID)) {
 				std::cout << "--->ERROR: No Such NodeID\n";
 			}
-			doubleLinkedList->PrintActual();
+			PrintActual(doubleLinkedList);
 			break;
 		case 'p': case 'P':
-			doubleLinkedList->PrintActual();
+			PrintActual(doubleLinkedList);
 			break;
 		case 'e': case 'E':
 			PrintEverything(doubleLinkedList);
@@ -362,7 +397,10 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 			std::cin >> content;
 			content = CinFail(content);
 			doubleLinkedList->ChangeActualNodeContent(content);
-			doubleLinkedList->PrintActual();
+			PrintActual(doubleLinkedList);
+			break;
+		case 'h': case 'H':
+			std::cout << "There are " << doubleLinkedList->CountNodes() << " Nodes\n";
 			break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
@@ -371,4 +409,83 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 		std::cout << "\n--->";
 		std::cin >> input;
 	}
+}
+
+
+//Functions
+
+
+void Menus::PathFindingToAll(Graph* graph) {
+	if (graph->GetActualNode() == nullptr) {
+		std::cout << "ERROR: There's No Actual Node" << std::endl;
+		return;
+	}
+	ConectionsList NodeSteps(0, graph->GetActualNode()->GetID(), 6);
+	Node* move = graph->GetActualNode();
+	for (int i = 1;; i++) {
+		for (int j = 0; move->GetNodeIDOnListPosition(j) != -1; j++) {
+			if (NodeSteps.GetConectionValueOnNodeID(move->GetNodeIDOnListPosition(j)) > (move->GetConectionValueTowardsNodeID(move->GetNodeIDOnListPosition(j)) + NodeSteps.GetConectionValueOnNodeID(move->GetID()))) {
+				NodeSteps.ReplaceValuesOnNodeID(move->GetConectionValueTowardsNodeID(move->GetNodeIDOnListPosition(j)) + NodeSteps.GetConectionValueOnNodeID(move->GetID()), move->GetNodeIDOnListPosition(j), move->GetID());
+				i = 1;
+			}
+			if (!NodeSteps.ExistedID(move->GetNodeIDOnListPosition(j))) {
+				NodeSteps.AddConection(move->GetConectionValueTowardsNodeID(move->GetNodeIDOnListPosition(j)) + NodeSteps.GetConectionValueOnNodeID(move->GetID()), move->GetNodeIDOnListPosition(j), move->GetID());
+			}
+		}
+		if (NodeSteps.GetConectionOnListPosition(i) == -1) {
+			break;
+		}
+		move = graph->GetNodeWithID(NodeSteps.GetConectionOnListPosition(i));
+	}
+	Conection* ConectionMove = NodeSteps.GetStart();
+	while (ConectionMove != nullptr) {
+		std::cout << "\n";
+		std::cout << "--(" << ConectionMove->GetValue() << ", ID:" << ConectionMove->GetID() << ")-->NodeID[" << ConectionMove->GetNodeID() << "]";
+		ConectionMove = ConectionMove->GetNext();
+	}
+	return;
+}
+
+
+void Menus::PrintActual(Graph* graph) {
+	if (graph->GetActualNode() == nullptr) {
+		std::cout << "ERROR: There's No Actual Node" << std::endl;
+		return;
+	}
+	std::cout << "Node[content:" << graph->GetActualNode()->GetContent() << " | ID:" << graph->GetActualNode()->GetID() << "]";
+}
+
+
+void Menus::PrintEverything(Graph* graph) {
+	if (graph->GetStartNode() == nullptr) {
+		std::cout << "ERROR: The Graph Is Empty" << std::endl;
+		return;
+	}
+	Node* move = graph->GetStartNode();
+	while (move != nullptr) {
+		std::cout << "Node[content:" << move->GetContent() << " | ID:" << move->GetID() << "]";
+		std::cout << "\n";
+		Conection* ConectionMove = move->GetConectionList()->GetStart();
+		while (ConectionMove != nullptr) {
+			std::cout << "\n";
+			std::cout << "--(" << ConectionMove->GetValue() << ", ID:" << ConectionMove->GetID() << ")-->NodeID[" << ConectionMove->GetNodeID() << "]";
+			ConectionMove = ConectionMove->GetNext();
+		}
+		std::cout << "\n*--------------------*\n";
+		move = move->GetNext();
+	}
+}
+
+
+void Menus::PrintWithNodeID(Graph* graph, int NodeID) {
+	if (graph->GetStartNode() == nullptr) {
+		std::cout << "ERROR: The Graph Is Empty" << std::endl;
+		return;
+	}
+	Node* move = graph->GetNodeWithID(NodeID);
+	if (move == nullptr) {
+		std::cout << "ERROR: Node " << NodeID << " Doesn't Exists" << std::endl;
+		return;
+	}
+	std::cout << "Node[content:" << move->GetContent() << " | ID:" << move->GetID() << "]";
 }

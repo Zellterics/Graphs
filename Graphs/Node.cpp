@@ -71,12 +71,8 @@ Node* Node::GetPast() {
 	return past;
 }
 
-void Node::PrintConectionList() {
-	conectionList->PrintAllConections();
-}
-
-void Node::PrintThis() {
-	std::cout << "Node[content:" << content << " | ID:" << ID << "]";
+ConectionsList* Node::GetConectionList() {
+	return conectionList;
 }
 
 bool Node::SetContent(int content) {

@@ -20,20 +20,15 @@ public:
 	bool ExistedID(int NodeID);
 	bool GoToNodeID(int NodeID);
 	bool MoveToNodeID(int NodeID);
+	ConectionsList* GetActualConections();
+	ConectionsList PathFindingToNodeID(int NodeID);
 	int CountNodes();
-	int PathFindingToNodeID(int NodeID);
 	Node* GetActualNode();
 	Node* GetEndNode();
 	Node* GetNextNode();
 	Node* GetNodeWithID(int NodeID);
 	Node* GetPastNode();
 	Node* GetStartNode();
-	void PathFindingToAll();
-
-	void PrintActual();
-	void PrintActualConections();
-	void PrintAllNodes();
-	void PrintWithNodeID(int NodeID);
 
 	template <typename T>
 	T GetActualData() {

@@ -13,11 +13,11 @@ public:
 	bool AddConection(int content, int NodeID, int extraUtilitys);
 	bool DeleteConectionToNodeID(int NodeID);
 	bool ExistedID(int NodeID);
+	Conection* GetStart();
 	int GetConectionExtraUtilitysOnNodeID(int NodeID);
 	int GetConectionOnListPosition(int position);
 	int GetConectionValueOnNodeID(int NodeID);
 	int GetGrade();
 	int GetNodeIDWithExtraUtilitys(int extraUtilitys);
-	void PrintAllConections();
 	void ReplaceValuesOnNodeID(int content, int NodeID, int extraUtilitys);
 };

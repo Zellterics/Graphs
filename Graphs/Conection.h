@@ -18,6 +18,5 @@ public:
 	int GetID();
 	int GetNodeID();
 	int GetValue();
-	void PrintConection();
 	void ReplaceValues(int content, int extraUtilitys);
 };

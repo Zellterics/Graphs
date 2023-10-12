@@ -9,7 +9,6 @@ public:
 	bool AddNextToActual(int content);
 	bool DeleteActual();
 	Node* GetPastOfNode(Node* found);
-	using Graph::PrintActual;
 	using Graph::GoToNodeID;
 	using Graph::ChangeActualNodeContent;
 	friend class Menus;

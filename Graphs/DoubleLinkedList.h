@@ -11,7 +11,6 @@ public:
 	Node* GetEndNode();
 	Node* GetStartNode();
 	using Graph::GoToNodeID;
-	using Graph::PrintActual;
 	using Graph::ChangeActualNodeContent;
 	friend class Menus;
 };

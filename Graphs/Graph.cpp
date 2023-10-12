@@ -33,46 +33,13 @@ bool Graph::AddNode(int content) {
 	return true;
 }
 
-void Graph::PrintActual() {
+ConectionsList* Graph::GetActualConections() {
 	if (actual == nullptr) {
 		std::cout << "ERROR: There's No Actual Node" << std::endl;
-		return;
+		ConectionsList* fail = new ConectionsList(-1, -1);
+		return fail;
 	}
-	actual->PrintThis();
-}
-
-void Graph::PrintWithNodeID(int NodeID) {
-	if (start == nullptr) {
-		std::cout << "ERROR: The Graph Is Empty" << std::endl;
-		return;
-	}
-	move = GetNodeWithID(NodeID);
-	if (move == nullptr) {
-		std::cout << "ERROR: Node " << NodeID << " Doesn't Exists" << std::endl;
-		return;
-	}
-	move->PrintThis();
-}
-
-void Graph::PrintAllNodes() {
-	if (start == nullptr) {
-		std::cout << "ERROR: The Graph Is Empty" << std::endl;
-		return;
-	}
-	move = start;
-	while (move != nullptr) {
-		move->PrintThis();
-		std::cout << "\n";
-		move = move->GetNext();
-	}
-}
-
-void Graph::PrintActualConections() {
-	if (actual == nullptr) {
-		std::cout << "ERROR: There's No Actual Node" << std::endl;
-		return;
-	}
-	actual->PrintConectionList();
+	return actual->GetConectionList();
 }
 
 bool Graph::ConectToNodeID(int content, int NodeID) {
@@ -139,6 +106,7 @@ bool Graph::MoveToNodeID(int NodeID) {
 }
 
 int Graph::CountNodes() {
+	move = start;
 	if (actual == nullptr) {
 		return 0;
 	}
@@ -150,10 +118,11 @@ int Graph::CountNodes() {
 	return i;
 }
 
-int Graph::PathFindingToNodeID(int NodeID) {
+ConectionsList Graph::PathFindingToNodeID(int NodeID) {
 	if (actual == nullptr) {
 		std::cout << "ERROR: There's No Actual Node" << std::endl;
-		return -1;
+		ConectionsList fail(-1, -1);
+		return fail;
 	}
 	ConectionsList NodeSteps(0, actual->GetID(), 6);
 	move = actual;
@@ -173,39 +142,12 @@ int Graph::PathFindingToNodeID(int NodeID) {
 		move = GetNodeWithID(NodeSteps.GetConectionOnListPosition(i));
 	}
 	move = GetNodeWithID(NodeID);
+	ConectionsList result(NodeSteps.GetConectionValueOnNodeID(NodeID), NodeID);
 	while (move != actual) {
-		move->PrintThis();
-		std::cout << "----> ";
 		move = GetNodeWithID(NodeSteps.GetConectionExtraUtilitysOnNodeID(move->GetID()));
+		result.AddConection(NodeSteps.GetConectionValueOnNodeID(move->GetID()), move->GetID());
 	}
-	std::cout << " Nodo" << move->GetContent();
-	return NodeSteps.GetConectionValueOnNodeID(NodeID);
-}
-
-void Graph::PathFindingToAll() {
-	if (actual == nullptr) {
-		std::cout << "ERROR: There's No Actual Node" << std::endl;
-		return;
-	}
-	ConectionsList NodeSteps(0, actual->GetID(), 6);
-	move = actual;
-	for (int i = 1;; i++) {
-		for (int j = 0; move->GetNodeIDOnListPosition(j) != -1; j++) {
-			if (NodeSteps.GetConectionValueOnNodeID(move->GetNodeIDOnListPosition(j)) > (move->GetConectionValueTowardsNodeID(move->GetNodeIDOnListPosition(j)) + NodeSteps.GetConectionValueOnNodeID(move->GetID()))) {
-				NodeSteps.ReplaceValuesOnNodeID(move->GetConectionValueTowardsNodeID(move->GetNodeIDOnListPosition(j)) + NodeSteps.GetConectionValueOnNodeID(move->GetID()), move->GetNodeIDOnListPosition(j), move->GetID());
-				i = 1;
-			}
-			if (!NodeSteps.ExistedID(move->GetNodeIDOnListPosition(j))) {
-				NodeSteps.AddConection(move->GetConectionValueTowardsNodeID(move->GetNodeIDOnListPosition(j)) + NodeSteps.GetConectionValueOnNodeID(move->GetID()), move->GetNodeIDOnListPosition(j), move->GetID());
-			}
-		}
-		if (NodeSteps.GetConectionOnListPosition(i) == -1) {
-			break;
-		}
-		move = GetNodeWithID(NodeSteps.GetConectionOnListPosition(i));
-	}
-	NodeSteps.PrintAllConections();
-	return;
+	return result;
 }
 
 Node* Graph::GetActualNode() {

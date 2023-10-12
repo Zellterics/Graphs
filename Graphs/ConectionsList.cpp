@@ -40,15 +40,6 @@ bool ConectionsList::AddConection(int content, int NodeID, int extraUtilitys) {
 	return true;
 }
 
-void ConectionsList::PrintAllConections() {
-	move = start;
-	while (move != nullptr) {
-		std::cout << "\n";
-		move->PrintConection();
-		move = move->GetNext();
-	}
-}
-
 bool ConectionsList::ExistedID(int NodeID) {
 	move = start;
 	while (move != nullptr) {
@@ -58,6 +49,10 @@ bool ConectionsList::ExistedID(int NodeID) {
 		move = move->GetNext();
 	}
 	return false;
+}
+
+Conection* ConectionsList::GetStart() {
+	return start;
 }
 
 int ConectionsList::GetConectionOnListPosition(int position) {
