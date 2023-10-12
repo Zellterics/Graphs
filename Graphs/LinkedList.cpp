@@ -37,6 +37,7 @@ bool LinkedList::AddNextToActual(int content) {
 
 bool LinkedList::DeleteActual() {
 	Node* past = GetPastOfNode(actual);
+	
 	if (past == nullptr) {
 		Graph::DeleteActual();
 		return true;
@@ -54,7 +55,7 @@ Node* LinkedList::GetPastOfNode(Node* found) {
 	move = start;
 	Node* past = nullptr;
 	while (move != nullptr) {
-		if (move->ExistedNodeID(found->GetID())) {
+		if (move->ExistedNodeID(found->GetID()) && move != actual) {
 			past = move;
 			break;
 		}

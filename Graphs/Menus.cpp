@@ -237,7 +237,6 @@ Menus::Menus(Graph* graph) {
 					std::cout << "--(" << move->GetValue() << ", ID:" << move->GetID() << ")-->NodeID[" << move->GetNodeID() << "]";
 					move = move->GetNext();
 				}
-				delete erase;
 			}}
 			break;
 		case 'd': case 'D':
@@ -277,8 +276,10 @@ Menus::Menus(LinkedList* linkedList) {
 			std::cout << "---AddElement   ---\n";
 			std::cout << "---InPlaceAdd   ---\n";
 			std::cout << "---GoTo         ---\n";
+			std::cout << "---SlideTo      ---\n";
 			std::cout << "---Print        ---\n";
 			std::cout << "---Everything   ---\n";
+			std::cout << "---BorderNodes  ---\n";
 			std::cout << "---DeleteActual ---\n";
 			std::cout << "---ModifyContent---\n";
 			std::cout << "---HowManyNodes ---\n";
@@ -306,6 +307,15 @@ Menus::Menus(LinkedList* linkedList) {
 			}
 			PrintActual(linkedList);
 			break;
+		case 's': case 'S':
+			std::cout << "--->NodeID:";
+			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
+			if (!linkedList->MoveToNodeID(NodeID)) {
+				std::cout << "--->ERROR: Not Such NodeID Conection\n";
+			}
+			PrintActual(linkedList);
+			break;
 		case 'p': case 'P':
 			PrintActual(linkedList);
 			break;
@@ -328,6 +338,20 @@ Menus::Menus(LinkedList* linkedList) {
 		case 'h': case 'H':
 			std::cout << "There are " << linkedList->CountNodes() << " Nodes\n";
 			break;
+		case 'b': case 'B': {
+			ConectionsList* erase = linkedList->GetActualConections();
+			if (erase->GetConectionOnListPosition(0) == -1) {
+				delete erase;
+			}
+			else {
+				Conection* move = erase->GetStart();
+				while (move != nullptr) {
+					std::cout << "\n";
+					std::cout << "--(" << move->GetValue() << ", ID:" << move->GetID() << ")-->NodeID[" << move->GetNodeID() << "]";
+					move = move->GetNext();
+				}
+			}}
+				break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
 			break;
@@ -351,8 +375,10 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 			std::cout << "---AddElement   ---\n";
 			std::cout << "---InPlaceAdd   ---\n";
 			std::cout << "---GoTo         ---\n";
+			std::cout << "---SlideTo      ---\n";
 			std::cout << "---Print        ---\n";
 			std::cout << "---Everything   ---\n";
+			std::cout << "---BorderNodes  ---\n";
 			std::cout << "---DeleteActual ---\n";
 			std::cout << "---ModifyContent---\n";
 			std::cout << "---HowManyNodes ---\n";
@@ -380,6 +406,15 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 			}
 			PrintActual(doubleLinkedList);
 			break;
+		case 's': case 'S':
+			std::cout << "--->NodeID:";
+			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
+			if (!doubleLinkedList->MoveToNodeID(NodeID)) {
+				std::cout << "--->ERROR: Not Such NodeID Conection\n";
+			}
+			PrintActual(doubleLinkedList);
+			break;
 		case 'p': case 'P':
 			PrintActual(doubleLinkedList);
 			break;
@@ -402,6 +437,205 @@ Menus::Menus(DoubleLinkedList* doubleLinkedList) {
 		case 'h': case 'H':
 			std::cout << "There are " << doubleLinkedList->CountNodes() << " Nodes\n";
 			break;
+		case 'b': case 'B': {
+			ConectionsList* erase = doubleLinkedList->GetActualConections();
+			if (erase->GetConectionOnListPosition(0) == -1) {
+				delete erase;
+			}
+			else {
+				Conection* move = erase->GetStart();
+				while (move != nullptr) {
+					std::cout << "\n";
+					std::cout << "--(" << move->GetValue() << ", ID:" << move->GetID() << ")-->NodeID[" << move->GetNodeID() << "]";
+					move = move->GetNext();
+				}
+			}}
+				break;
+		default:
+			std::cout << "That's Not An Option" << std::endl;
+			break;
+		}
+		std::cout << "\n--->";
+		std::cin >> input;
+	}
+}
+
+
+Menus::Menus(CircularLinkedList* circularLinkedList) {
+	int content, NodeID;
+	bool stop = false;
+	std::string input;
+	char filteredInput;
+	input = 'f';
+	while (!stop) {
+		filteredInput = input[0];
+		switch (filteredInput) {
+		case 'f': case 'F':
+			std::cout << "---FUNCTIONS    ---\n";
+			std::cout << "---AddElement   ---\n";
+			std::cout << "---GoTo         ---\n";
+			std::cout << "---SlideTo      ---\n";
+			std::cout << "---Print        ---\n";
+			std::cout << "---Everything   ---\n";
+			std::cout << "---BorderNodes  ---\n";
+			std::cout << "---DeleteActual ---\n";
+			std::cout << "---ModifyContent---\n";
+			std::cout << "---HowManyNodes ---\n";
+			std::cout << "---Terminate    ---\n";
+			break;
+		case 'a': case 'A':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			circularLinkedList->AddElement(content);
+			PrintActual(circularLinkedList);
+			break;
+		case 'g': case 'G':
+			std::cout << "--->NodeID:";
+			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
+			if (!circularLinkedList->GoToNodeID(NodeID)) {
+				std::cout << "--->ERROR: No Such NodeID\n";
+			}
+			PrintActual(circularLinkedList);
+			break;
+		case 's': case 'S':
+			std::cout << "--->NodeID:";
+			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
+			if (!circularLinkedList->MoveToNodeID(NodeID)) {
+				std::cout << "--->ERROR: Not Such NodeID Conection\n";
+			}
+			PrintActual(circularLinkedList);
+			break;
+		case 'p': case 'P':
+			PrintActual(circularLinkedList);
+			break;
+		case 'e': case 'E':
+			PrintEverything(circularLinkedList);
+			break;
+		case 't': case 'T':
+			stop = true;
+			break;
+		case 'd': case 'D':
+			circularLinkedList->DeleteActual();
+			break;
+		case 'm': case 'M':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			circularLinkedList->ChangeActualNodeContent(content);
+			PrintActual(circularLinkedList);
+			break;
+		case 'h': case 'H':
+			std::cout << "There are " << circularLinkedList->CountNodes() << " Nodes\n";
+			break;
+		case 'b': case 'B': {
+			ConectionsList* erase = circularLinkedList->GetActualConections();
+			if (erase->GetConectionOnListPosition(0) == -1) {
+				delete erase;
+			}
+			else {
+				Conection* move = erase->GetStart();
+				while (move != nullptr) {
+					std::cout << "\n";
+					std::cout << "--(" << move->GetValue() << ", ID:" << move->GetID() << ")-->NodeID[" << move->GetNodeID() << "]";
+					move = move->GetNext();
+				}
+			}}
+				break;
+		default:
+			std::cout << "That's Not An Option" << std::endl;
+			break;
+		}
+		std::cout << "\n--->";
+		std::cin >> input;
+	}
+}
+
+Menus::Menus(CircularDoubleLinkedList* circularDoubleLinkedList) {
+	int content, NodeID;
+	bool stop = false;
+	std::string input;
+	char filteredInput;
+	input = 'f';
+	while (!stop) {
+		filteredInput = input[0];
+		switch (filteredInput) {
+		case 'f': case 'F':
+			std::cout << "---FUNCTIONS    ---\n";
+			std::cout << "---AddElement   ---\n";
+			std::cout << "---GoTo         ---\n";
+			std::cout << "---SlideTo      ---\n";
+			std::cout << "---Print        ---\n";
+			std::cout << "---Everything   ---\n";
+			std::cout << "---BorderNodes  ---\n";
+			std::cout << "---DeleteActual ---\n";
+			std::cout << "---ModifyContent---\n";
+			std::cout << "---HowManyNodes ---\n";
+			std::cout << "---Terminate    ---\n";
+			break;
+		case 'a': case 'A':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			circularDoubleLinkedList->AddElement(content);
+			PrintActual(circularDoubleLinkedList);
+			break;
+		case 'g': case 'G':
+			std::cout << "--->NodeID:";
+			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
+			if (!circularDoubleLinkedList->GoToNodeID(NodeID)) {
+				std::cout << "--->ERROR: No Such NodeID\n";
+			}
+			PrintActual(circularDoubleLinkedList);
+			break;
+		case 's': case 'S':
+			std::cout << "--->NodeID:";
+			std::cin >> NodeID;
+			NodeID = CinFail(NodeID);
+			if (!circularDoubleLinkedList->MoveToNodeID(NodeID)) {
+				std::cout << "--->ERROR: Not Such NodeID Conection\n";
+			}
+			PrintActual(circularDoubleLinkedList);
+			break;
+		case 'p': case 'P':
+			PrintActual(circularDoubleLinkedList);
+			break;
+		case 'e': case 'E':
+			PrintEverything(circularDoubleLinkedList);
+			break;
+		case 't': case 'T':
+			stop = true;
+			break;
+		case 'd': case 'D':
+			circularDoubleLinkedList->DeleteActual();
+			break;
+		case 'm': case 'M':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content);
+			circularDoubleLinkedList->ChangeActualNodeContent(content);
+			PrintActual(circularDoubleLinkedList);
+			break;
+		case 'h': case 'H':
+			std::cout << "There are " << circularDoubleLinkedList->CountNodes() << " Nodes\n";
+			break;
+		case 'b': case 'B': {
+			ConectionsList* erase = circularDoubleLinkedList->GetActualConections();
+			if (erase->GetConectionOnListPosition(0) == -1) {
+				delete erase;
+			}
+			else {
+				Conection* move = erase->GetStart();
+				while (move != nullptr) {
+					std::cout << "\n";
+					std::cout << "--(" << move->GetValue() << ", ID:" << move->GetID() << ")-->NodeID[" << move->GetNodeID() << "]";
+					move = move->GetNext();
+				}
+			}}
+				break;
 		default:
 			std::cout << "That's Not An Option" << std::endl;
 			break;

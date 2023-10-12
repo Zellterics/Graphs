@@ -13,4 +13,3 @@ public:
 	using Graph::ChangeActualNodeContent;
 	friend class Menus;
 };
-

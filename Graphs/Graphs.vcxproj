@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CircularDoubleLinkedList.cpp" />
+    <ClCompile Include="CircularLinkedList.cpp" />
     <ClCompile Include="ConectionsList.cpp" />
     <ClCompile Include="DoubleLinkedList.cpp" />
     <ClCompile Include="Graph.cpp" />
@@ -139,6 +141,8 @@
     <ClCompile Include="Queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CircularDoubleLinkedList.h" />
+    <ClInclude Include="CircularLinkedList.h" />
     <ClInclude Include="Conection.h" />
     <ClInclude Include="ConectionsList.h" />
     <ClInclude Include="DoubleLinkedList.h" />

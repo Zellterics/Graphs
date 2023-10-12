@@ -1,7 +1,7 @@
 #pragma once
 #include "Pile.h"
-#include "LinkedList.h"
-#include "DoubleLinkedList.h"
+#include "CircularLinkedList.h"
+#include "CircularDoubleLinkedList.h"
 #include "Graph.h"
 #include "Queue.h"
 
@@ -13,6 +13,8 @@ public:
 	Menus(Graph* graph);
 	Menus(LinkedList* linkedList);
 	Menus(DoubleLinkedList* doubleLinkedList);
+	Menus(CircularLinkedList* circularLinkedList);
+	Menus(CircularDoubleLinkedList* circularDoubleLinkedList);
 	
 
 	void PathFindingToAll(Graph* graph);
