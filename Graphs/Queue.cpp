@@ -1,16 +1,22 @@
 #include "Queue.h"
 
-Queue::Queue() : DoubleLinkedList() {
+Queue::Queue() : LinkedList() {
 
 }
 
-bool Queue::DeleteElement() {
-	Node* save = actual;
-	actual = GetStartNode();
-	DeleteActual();
-	if (save == nullptr) {
-		actual = start;
+Node Queue::DeQueue() {
+	if (start == nullptr) {
+		AddElement(0);
 	}
-	actual = save;
-	return true;
+	Node Save(start->GetContent(), nullptr);
+	Save.SetData(start->GetData());
+	actual = start;
+	DeleteActual();
+	actual = start;
+	return Save;
 }
+
+bool Queue::InQueue(int content) {
+	return AddElement(content);
+}
+

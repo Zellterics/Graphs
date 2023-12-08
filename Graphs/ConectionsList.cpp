@@ -24,7 +24,7 @@ ConectionsList::~ConectionsList() {
 
 bool ConectionsList::AddConection(int content, int NodeID) {
 	if (ExistedID(NodeID)) {
-		std::cout << "ERROR: Conection To " << NodeID << " Already Exists" << std::endl;
+		//std::cout << "ERROR: Conection To " << NodeID << " Already Exists" << std::endl;
 	}
 	move = end;
 	end = new Conection(content, move, NodeID);
@@ -33,7 +33,7 @@ bool ConectionsList::AddConection(int content, int NodeID) {
 
 bool ConectionsList::AddConection(int content, int NodeID, int extraUtilitys) {
 	if (ExistedID(NodeID)) {
-		std::cout << "ERROR: Conection To " << NodeID << " Already Exists" << std::endl;
+		//std::cout << "ERROR: Conection To " << NodeID << " Already Exists" << std::endl;
 	}
 	move = end;
 	end = new Conection(content, move, NodeID, extraUtilitys);
@@ -119,7 +119,7 @@ bool ConectionsList::DeleteConectionToNodeID(int NodeID) {
 		return false;
 	}
 	if (start->GetNodeID() == NodeID) {
-		std::cout << "There's No Support For Deleting Initial Node In The List" << std::endl;
+		//std::cout << "There's No Support For Deleting Initial Node In The List" << std::endl;
 		return false;
 	}
 	move = start;

@@ -1,12 +1,13 @@
 #pragma once
 #include "DoubleLinkedList.h"
 
-class Queue : private DoubleLinkedList
+class Queue : private LinkedList
 {
 public:
 	Queue();
-	bool DeleteElement();
-	using DoubleLinkedList::AddElement;
+	bool InQueue(int content);
+	Node DeQueue();
+	using LinkedList::AddElement;
 	using Graph::GoToNodeID;
 	using Graph::ChangeActualNodeContent;
 	friend class Menus;

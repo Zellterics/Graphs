@@ -19,6 +19,14 @@ Graph::~Graph() {
 	}
 }
 
+void* Graph::GetActualData() {
+	return actual->GetData();
+}
+
+void Graph::SetActualData(void* data) {
+	return actual->SetData(data);
+}
+
 bool Graph::AddNode(int content) {
 	if (start == nullptr) {
 		start = new Node(content, nullptr);
@@ -35,7 +43,7 @@ bool Graph::AddNode(int content) {
 
 ConectionsList* Graph::GetActualConections() {
 	if (actual == nullptr) {
-		std::cout << "ERROR: There's No Actual Node" << std::endl;
+		//std::cout << "ERROR: There's No Actual Node" << std::endl;
 		ConectionsList* fail = new ConectionsList(-1, -1);
 		return fail;
 	}
@@ -44,11 +52,11 @@ ConectionsList* Graph::GetActualConections() {
 
 bool Graph::ConectToNodeID(int content, int NodeID) {
 	if (start == nullptr) {
-		std::cout << "ERROR: The Graph Is Empty" << std::endl;
+		//std::cout << "ERROR: The Graph Is Empty" << std::endl;
 		return false;
 	}
 	if (!ExistedID(NodeID)) {
-		std::cout << "ERROR: NODE " << NodeID << " DOESN'T EXISTS" << std::endl;
+		//std::cout << "ERROR: NODE " << NodeID << " DOESN'T EXISTS" << std::endl;
 		return false;
 	}
 	actual->ConectToNodeID(content, NodeID);
@@ -57,7 +65,7 @@ bool Graph::ConectToNodeID(int content, int NodeID) {
 
 bool Graph::ChangeActualNodeContent(int content) {
 	if (start == nullptr) {
-		std::cout << "ERROR: The Graph Is Empty" << std::endl;
+		//std::cout << "ERROR: The Graph Is Empty" << std::endl;
 		return false;
 	}
 	actual->SetContent(content);
@@ -77,7 +85,7 @@ bool Graph::ExistedID(int NodeID) {
 
 bool Graph::GoToNodeID(int NodeID) {
 	if (start == nullptr) {
-		std::cout << "ERROR: The Graph Is Empty" << std::endl;
+		//std::cout << "ERROR: The Graph Is Empty" << std::endl;
 		return false;
 	}
 	move = start;
@@ -93,7 +101,7 @@ bool Graph::GoToNodeID(int NodeID) {
 
 bool Graph::MoveToNodeID(int NodeID) {
 	if (actual == nullptr) {
-		std::cout << "ERROR: There's No Actual Node" << std::endl;
+		//std::cout << "ERROR: There's No Actual Node" << std::endl;
 		return false;
 	}
 	if (actual->ExistedNodeID(NodeID)) {
@@ -120,7 +128,7 @@ int Graph::CountNodes() {
 
 ConectionsList Graph::PathFindingToNodeID(int NodeID) {
 	if (actual == nullptr) {
-		std::cout << "ERROR: There's No Actual Node" << std::endl;
+		//std::cout << "ERROR: There's No Actual Node" << std::endl;
 		ConectionsList fail(-1, -1);
 		return fail;
 	}
@@ -164,7 +172,7 @@ Node* Graph::GetNextNode() {
 
 Node* Graph::GetNodeWithID(int NodeID) {
 	if (start == nullptr) {
-		std::cout << "ERROR: The Graph Is Empty" << std::endl;
+		//std::cout << "ERROR: The Graph Is Empty" << std::endl;
 		return nullptr;
 	}
 	move = start;
@@ -187,11 +195,11 @@ Node* Graph::GetStartNode() {
 
 bool Graph::DualConectToNodeID(int content, int NodeID) {
 	if (start == nullptr) {
-		std::cout << "ERROR: The Graph Is Empty" << std::endl;
+		//std::cout << "ERROR: The Graph Is Empty" << std::endl;
 		return false;
 	}
 	if (NodeID > end->GetID()) {
-		std::cout << "ERROR: Node " << NodeID << " Doesn't Exists" << std::endl;
+		//std::cout << "ERROR: Node " << NodeID << " Doesn't Exists" << std::endl;
 		return false;
 	}
 	actual->ConectToNodeID(content, NodeID);
@@ -202,7 +210,7 @@ bool Graph::DualConectToNodeID(int content, int NodeID) {
 
 bool Graph::DeleteActual() {
 	if (actual == nullptr) {
-		std::cout << "ERROR: There's No Actual Node" << std::endl;
+		//std::cout << "ERROR: There's No Actual Node" << std::endl;
 		return false;
 	}
 	move = start;
@@ -252,22 +260,22 @@ bool Graph::DeleteActual() {
 
 bool Graph::DeleteConectionToNodeID(int NodeID) {
 	if (actual == nullptr) {
-		std::cout << "ERROR: There's No Actual Node" << std::endl;
+		//std::cout << "ERROR: There's No Actual Node" << std::endl;
 		return false;
 	}
 	if (!actual->ExistedNodeID(NodeID)) {
-		std::cout << "ERROR: Node " << NodeID << " Doesn't Exists" << std::endl;
+		//std::cout << "ERROR: Node " << NodeID << " Doesn't Exists" << std::endl;
 	}
 	return actual->DeleteConectionToNodeID(NodeID);
 }
 
 bool Graph::DeleteConectionToNodeID(int NodeID, bool DeleteDual) {
 	if (actual == nullptr) {
-		std::cout << "ERROR: There's No Actual Node" << std::endl;
+		//std::cout << "ERROR: There's No Actual Node" << std::endl;
 		return false;
 	}
 	if(!actual->ExistedNodeID(NodeID)) {
-		std::cout << "ERROR: Node " << NodeID << " Doesn't Exists" << std::endl;
+		//std::cout << "ERROR: Node " << NodeID << " Doesn't Exists" << std::endl;
 	}
 	if (!DeleteDual) {
 		return DeleteConectionToNodeID(NodeID);

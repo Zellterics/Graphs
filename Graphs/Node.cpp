@@ -15,7 +15,7 @@ Node::Node(int content, Node* past) {
 		ID = past->ID + 1;
 		past->SetNext(mySelf);
 	}
-
+	data = nullptr;
 	conectionList = new ConectionsList(0, ID);
 }
 
@@ -23,9 +23,17 @@ Node::~Node() {
 	delete conectionList;
 }
 
+void *Node::GetData() {
+	return data;
+}
+
+void Node::SetData(void *data) {
+	this->data = data;
+}
+
 bool Node::ConectToNodeID(int content, int NodeID) {
 	if (ExistedNodeID(NodeID)) {
-		std::cout << "ERROR: CONECTION ALREADY EXISTS" << std::endl;
+		//std::cout << "ERROR: CONECTION ALREADY EXISTS" << std::endl;
 		return false;
 	}
 	conectionList->AddConection(content, NodeID);
@@ -42,7 +50,7 @@ int Node::GetContent() {
 
 int Node::GetConectionValueTowardsNodeID(int NodeID) {
 	if (conectionList->GetConectionValueOnNodeID(NodeID) == -1) {
-		std::cout << "ERROR: NodeID Not Found" << std::endl;
+		//std::cout << "ERROR: NodeID Not Found" << std::endl;
 	}
 	return conectionList->GetConectionValueOnNodeID(NodeID);
 }
@@ -101,7 +109,7 @@ bool Node::DeleteConectionToNodeID(int NodeID) {
 
 bool Node::ConectToNodeID(int content, int NodeID, int extraUtilitys) {
 	if (ExistedNodeID(NodeID)) {
-		std::cout << "ERROR: CONECTION ALREADY EXISTS" << std::endl;
+		//std::cout << "ERROR: CONECTION ALREADY EXISTS" << std::endl;
 		return false;
 	}
 	conectionList->AddConection(content, NodeID, extraUtilitys);

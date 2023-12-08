@@ -30,12 +30,6 @@ public:
 	Node* GetPastNode();
 	Node* GetStartNode();
 
-	template <typename T>
-	T GetActualData() {
-		return actual->GetData();
-	}
-	template <typename T>
-	T SetActualData(T data) {
-		return actual->SetData(data);
-	}
+	void* GetActualData();
+	void SetActualData(void* data);
 };

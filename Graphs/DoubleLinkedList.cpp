@@ -39,7 +39,7 @@ bool DoubleLinkedList::AddNextToActual(int content) {
 
 bool DoubleLinkedList::DeleteActual() {
 	if (actual == nullptr) {
-		std::cout << "ERROR: There's No Actual";
+		//std::cout << "ERROR: There's No Actual";
 		return false;
 	}
 	if (GetNodeWithID(actual->GetNodeIDWithExtraUtilitys(1)) == nullptr) {
@@ -59,6 +59,9 @@ bool DoubleLinkedList::DeleteActual() {
 }
 
 Node* DoubleLinkedList::GetEndNode() {
+	if (start == nullptr) {
+		return nullptr;
+	}
 	move = start;
 	while (move != nullptr) {
 		if (move->GetNodeIDWithExtraUtilitys(2) == -1) {
@@ -70,6 +73,9 @@ Node* DoubleLinkedList::GetEndNode() {
 }
 
 Node* DoubleLinkedList::GetStartNode() {
+	if (start == nullptr) {
+		return nullptr;
+	}
 	move = start;
 	while (move != nullptr) {
 		if (move->GetNodeIDWithExtraUtilitys(1) == -1) {

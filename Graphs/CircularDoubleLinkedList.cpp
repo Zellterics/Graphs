@@ -10,7 +10,7 @@ bool CircularDoubleLinkedList::AddElement(int content) {
 		return true;
 	}
 	if (CountNodes() == 1) {
-		Node* save = actual;
+		Node* save = start;
 		AddNode(content);
 		save->ConectToNodeID(1, actual->GetID(), 2);
 		actual->ConectToNodeID(1, save->GetID(), 1);
@@ -36,4 +36,17 @@ bool CircularDoubleLinkedList::AddElement(int content) {
 	save->ConectToNodeID(1, actual->GetID(), 2);
 	actual->ConectToNodeID(1, save->GetID(), 1);
 	return true;
+}
+
+Node* CircularDoubleLinkedList::GetEndNode() {
+	if (start == nullptr) {
+		return nullptr;
+	}
+	if (CountNodes() == 1) {
+		return start;
+	}
+	if (CountNodes() == 2) {
+		return GetNodeWithID(start->GetNodeIDOnListPosition(1));
+	}
+	return GetNodeWithID(start->GetNodeIDWithExtraUtilitys(1));
 }
