@@ -127,31 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CircularDoubleLinkedList.cpp" />
-    <ClCompile Include="CircularLinkedList.cpp" />
     <ClCompile Include="ConectionsList.cpp" />
-    <ClCompile Include="DoubleLinkedList.cpp" />
     <ClCompile Include="Graph.cpp" />
-    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Conection.cpp" />
     <ClCompile Include="Menus.cpp" />
     <ClCompile Include="Node.cpp" />
-    <ClCompile Include="Pile.cpp" />
-    <ClCompile Include="Queue.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CircularDoubleLinkedList.h" />
-    <ClInclude Include="CircularLinkedList.h" />
     <ClInclude Include="Conection.h" />
     <ClInclude Include="ConectionsList.h" />
-    <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="Graph.h" />
-    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Menus.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="Pile.h" />
-    <ClInclude Include="Queue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

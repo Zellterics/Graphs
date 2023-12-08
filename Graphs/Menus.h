@@ -1,9 +1,5 @@
 #pragma once
-#include "Pile.h"
-#include "CircularLinkedList.h"
-#include "CircularDoubleLinkedList.h"
 #include "Graph.h"
-#include "Queue.h"
 
 class Menus
 {
@@ -15,13 +11,7 @@ private:
 		int reg = 0;
 	};
 public:
-	Menus(Pile* pile);
-	Menus(Queue* queue);
 	Menus(Graph* graph);
-	Menus(LinkedList* linkedList);
-	Menus(DoubleLinkedList* doubleLinkedList);
-	Menus(CircularLinkedList* circularLinkedList);
-	Menus(CircularDoubleLinkedList* circularDoubleLinkedList);
 	
 
 	void PathFindingToAll(Graph* graph);
