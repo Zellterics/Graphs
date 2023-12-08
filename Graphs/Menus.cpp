@@ -165,6 +165,7 @@ Menus::Menus(Graph* graph) {
 			std::cout << "---DeleteActual ---\n";
 			std::cout << "---ModifyContent---\n";
 			std::cout << "---HowManyNodes ---\n";
+			std::cout << "---ZDFS         ---\n";
 			std::cout << "---Terminate    ---\n";
 			break;
 		case 'a': case 'A':
@@ -260,6 +261,17 @@ Menus::Menus(Graph* graph) {
 		case 'h': case 'H':
 			std::cout << "There are " << graph->CountNodes() << " Nodes\n";
 			break;
+		case 'z': case 'Z':
+			std::cout << "--->Node content:";
+			std::cin >> content;
+			content = CinFail(content); 
+			{
+				std::vector<int> save = graph->DepthFirstSearch(content);
+				for (int i : save) {
+					std::cout << i << ", ";
+				}
+				break; 
+			}
 		default:
 			std::cout << "That's Not An Option" << std::endl;
 			break;

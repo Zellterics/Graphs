@@ -286,6 +286,34 @@ bool Graph::DeleteConectionToNodeID(int NodeID, bool DeleteDual) {
 	return false;
 }
 
+std::vector<int> Graph::DepthFirstSearch(int Data) {
+	std::vector<int> stack;
+	std::vector<int> stackVisited;
+	std::vector<int> stackVisitedID;
+	ConectionsList* list = actual->GetConectionList();
+	stack.push_back(actual->GetID());
+	stackVisitedID.push_back(actual->GetID());
+	stackVisited.push_back(actual->GetContent());
+	while (!stack.empty()) {
+		move = GetNodeWithID(stack.back());
+		stack.pop_back();
+		if (move->GetContent() == Data) {
+			return stackVisited;
+		}
+		list = move->GetConectionList();
+		for (int i = 1; list->GetConectionOnListPosition(i) != -1; i++) {
+			if (std::count(stackVisitedID.begin(), stackVisitedID.end(), list->GetConectionOnListPosition(i))) {
+				continue;
+			}
+			stack.push_back(list->GetConectionOnListPosition(i));
+			stackVisitedID.push_back(list->GetConectionOnListPosition(i));
+			stackVisited.push_back(list->GetConectionOnListPosition(i));
+		}
+	}
+	stackVisited.push_back(-255);
+	return stackVisited;
+}
+
 /*
 TEST:
 //a 0 a 1 a 2 a 3 a 4 a 5 a 6 a 7 a 8 a 9 a 10 g 0 c 2 1 c 1 2 g 1 c 2 0 c 3 3 g 2 c 1 4 c 1 6 g 3 c 3 1 g 4 c 3 5 c 6 0 g 5 c 4 6 g 6 c 5 4 c 1 3 c 1 7 g 7 c 1 8 g 8 c 1 9 g 9 c 3 10 g 6

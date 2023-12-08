@@ -4,7 +4,7 @@
 #include "Menus.h"
 
 int main(){
-	LinkedList list;
+	Graph list;
 	Menus menu(&list);
 	return 0;
 }

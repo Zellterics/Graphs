@@ -1,6 +1,7 @@
 #pragma once
 #include "Node.h"
 #include <iostream>
+#include <vector>
 
 class Graph
 {
@@ -29,6 +30,7 @@ public:
 	Node* GetNodeWithID(int NodeID);
 	Node* GetPastNode();
 	Node* GetStartNode();
+	std::vector<int> DepthFirstSearch(int Data);
 
 	void* GetActualData();
 	void SetActualData(void* data);
